@@ -17,14 +17,14 @@ class Solution {
 
     // Fill all even places with majority character
     int idx = 0;
-    while (hash[letter]-- > 0) {
+    while (hash[letter]--> 0) {
       res[idx] = (char) (letter + 'a');
       idx += 2;
     }
 
     // Fill the remaining characters
     for (int i = 0; i < hash.length; i++)
-      while (hash[i]-- > 0) {
+      while (hash[i]--> 0) {
         if (idx >= res.length) idx = 1;
 
         res[idx] = (char) (i + 'a');
