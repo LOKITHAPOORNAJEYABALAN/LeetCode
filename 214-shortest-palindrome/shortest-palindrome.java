@@ -1,15 +1,36 @@
 class Solution 
 {
-    public String shortestPalindrome(String s) 
+    public boolean isPalindrome(String s) 
     {
-        StringBuilder r = new StringBuilder(s).reverse();
-        for(int i = 0; i<s.length() ; i++)
+        int i = 0,j = s.length()-1;
+        while(i<j)
         {
-            if(s.startsWith(r.substring(i)))
+            if(s.charAt(i) != s.charAt(j))
             {
-                return r.substring(0,i) + s;
+                return false;
+            }
+            i++;
+            j--;
+        }
+        return true;
+    }
+    public String shortestPalindrome(String s)
+    {
+        if(s.length() <= 1)
+        {
+            return s;
+        }
+        int end = 0;
+        for(int i = s.length();i>=0;i--)
+        {
+            if(isPalindrome(s.substring(0,i)))
+            {
+                end = i;
+                break;
             }
         }
-        return "";
+        String suf = s.substring(end);
+        String rev = new StringBuilder(suf).reverse().toString();
+        return rev+s;
     }
 }
