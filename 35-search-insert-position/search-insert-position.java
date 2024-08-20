@@ -1,25 +1,32 @@
 class Solution 
 {
+    int count;
+    int a;
     public int searchInsert(int[] nums, int target) 
     {
-      int left = 0;
-      int right = nums.length-1;
-      while(left <= right)
-      {
-        int mid = left+(right-left)/2;
-        if(nums[mid] == target)
+       for(int ind = 0 ;ind < nums.length; ind++) 
+       {
+        if(nums[ind] == target)
         {
-            return mid;
+            count++;
+            a = ind;
         }
-        else if(nums[mid] < target)
+       }
+       if(count == 0)
+       {
+        for(int ind = 0 ;ind < nums.length ; ind++)
         {
-            left = mid+1;
+            if(nums[ind] > target)
+            {
+                a = ind;
+                return a;
+            }
         }
-        else
+        if(target > nums[nums.length-1])
         {
-            right = mid - 1;
+            return nums.length;
         }
-      }
-      return left;
+       }
+       return a;
     }
 }
